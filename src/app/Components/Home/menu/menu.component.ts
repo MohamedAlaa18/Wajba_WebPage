@@ -109,7 +109,7 @@ export class MenuComponent implements OnInit {
       {
         id: 106,
         name: 'Grilled Chicken Salad',
-        imageUrl: 'assets/images/burger.jpeg',
+        imageUrl: 'assets/images/burger_3.jpeg',
         description: 'Healthy salad with grilled chicken strips.',
         price: 8.75,
         categoryId: 1,
@@ -193,7 +193,7 @@ export class MenuComponent implements OnInit {
       {
         id: 113,
         name: 'Chicken Tenders',
-        imageUrl: 'assets/images/burger.jpeg',
+        imageUrl: 'assets/images/burger_3.jpeg',
         description: 'Crispy fried chicken strips.',
         price: 5.99,
         categoryId: 1,
