@@ -1,0 +1,18 @@
+.overflow-y-auto {
+  scrollbar-width: none;
+  max-height: 80dvh;
+}
+
+button svg.hover-fill path {
+  transition: 0.3s;
+}
+
+button:hover svg.hover-fill path {
+  fill: #D44E4F;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    appearance: none;
+    margin: 0;
+}

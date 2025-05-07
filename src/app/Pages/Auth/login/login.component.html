@@ -1,0 +1,89 @@
+<div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 mt-12 min-h-[100dvh] flex justify-center items-center">
+  <div class="mx-auto max-w-lg">
+    <form (ngSubmit)="onSubmit()" [formGroup]="loginForm"
+      class="mb-0 mt-6 space-y-4 rounded-2xl shadow-[0_4px_16px_0px_#CCCCCC66] p-4 sm:p-6 lg:p-8 sm:min-w-[462px] min-w-[362px]">
+
+      <p class="text-center text-2xl font-bold">{{ 'general.welcome_back' | translate }}</p>
+
+      <div>
+        <label for="phone" class="font-medium">{{ 'general.phone_number' | translate }}</label>
+
+        <div class="relative flex gap-3">
+          <button type="button" (click)="toggleCountryCodeDropdown()"
+            class="flex gap-2 items-center justify-center rounded-md border-solid border-[1px] border-[#E3E3E3] h-[53.6px] p-4 mt-2 text-gray-900 transition">
+            <span class="sr-only">Select Country Code</span>
+            <img [src]="selectedCountryLogo" alt="Country logo" class="w-4 h-4">
+            {{ selectedCountryDialCode }}
+          </button>
+
+          <input type="text" id="phone" formControlName="phone"
+            class="w-full rounded-md border-solid border-[1px] border-[#E3E3E3] p-4 pe-12 mt-2 text-sm shadow-sm focus:outline-[#F45859]"
+            placeholder="{{ 'general.enter_phone_number' | translate }}" />
+
+          <div class="absolute left-0 z-10 mt-16 w-fit rounded-xl border border-gray-100 bg-white shadow-lg"
+            [class.hidden]="!isCountryCodeDropdownOpen">
+            <div class="p-2">
+              @for(country of countries; track $index){
+              <div (click)="selectCountryCode(country)"
+                class="flex gap-2 items-center rounded-lg p-2 text-base text-gray-900 hover:bg-gray-50 hover:text-gray-700 cursor-pointer">
+                <img [src]="country.logo" alt="Country logo" class="w-4 h-4">
+                {{ country.dial_code }}
+              </div>
+              }
+            </div>
+          </div>
+        </div>
+        <div *ngIf="loginForm.get('phone')?.invalid && loginForm.get('phone')?.touched"
+          class="text-red-500 text-xs text-center mt-1">
+          {{ 'general.phone_number_error' | translate }}
+        </div>
+      </div>
+
+      <!-- <div>
+        <label for="password" class="font-medium">{{ 'general.password' | translate }}</label>
+
+        <div class="relative">
+          <input type="{{ showPassword ? 'text' : 'password' }}" id="password" formControlName="password"
+            class="w-full rounded-md border-solid border-[1px] border-[#E3E3E3] p-4 pe-12 mt-2 text-sm shadow-sm focus:outline-[#F45859]"
+            placeholder="{{ 'general.enter_password' | translate }}" />
+          <button type="button" (click)="togglePasswordVisibility()" [class.left-0]="isArabic()"
+            [class.right-0]="!isArabic()" class="absolute inset-y-9 grid place-content-center px-4">
+            <img *ngIf="showPassword" src="assets/images/open-eye.svg" alt="open-eye">
+            <img *ngIf="!showPassword" src="assets/images/close-eye.svg" alt="close-eye">
+          </button>
+        </div>
+        <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+          class="text-red-500 text-xs mt-1">
+          {{ 'general.password_error' | translate }}
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between">
+        <label class="flex items-center gap-2">
+          <input type="checkbox" formControlName="rememberMe"
+            class="form-checkbox accent-[#F45859] h-5 w-5 text-[#F45859] border-[1px] border-[#F45859] rounded">
+          <span class="text-sm text-gray-700">{{ 'general.remember_me' | translate }}</span>
+        </label>
+        <a href="/forgotPassword" class="text-[#F45859] font-medium underline">{{ 'general.forgot_password' | translate
+          }}</a>
+      </div> -->
+
+      <button type="submit"
+        class="block w-5/6 rounded-full bg-[#F45859] hover:bg-[#D44E4F] transition px-5 py-2 mx-auto text-xl font-bold text-white mt-4">
+        {{ 'general.login' | translate }}
+      </button>
+
+      <p class="text-center text-[#555457] font-medium">
+        {{ 'general.no_account' | translate }}&nbsp;
+        <a href="/signup" class="underline text-[#F45859] font-bold">{{ 'general.sign_up' | translate }}</a>
+      </p>
+
+      <p class="text-center text-[#555457] font-medium">{{ 'general.or' | translate }}</p>
+
+      <button type="button" routerLink="/"
+        class="block w-5/6 rounded-full border-solid border-[1px] border-[#F45859] px-5 py-2 mx-auto text-xl font-bold text-[#F45859]">
+        {{ 'general.continue_as_guest' | translate }}
+      </button>
+    </form>
+  </div>
+</div>

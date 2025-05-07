@@ -1,0 +1,123 @@
+<form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+  <div class="flex flex-col justify-center items-center w-full">
+    <!-- Date and Time Selection Row -->
+    <div class="flex items-center justify-center text-[24px] font-medium md:my-8 my-4 md:w-[648px] w-full">
+      <!-- Time Combo Box -->
+      <div class="select-wrapper w-full">
+        <select id="time" formControlName="time"
+          class="w-full h-[64px] border-[1px] border-solid border-[#C7C7C7] px-8 rounded-l-[16px]" required>
+          <option value="" disabled selected>Time</option>
+          <option *ngFor="let time of times" [value]="time">{{ time }}</option>
+        </select>
+      </div>
+
+      <!-- Branch Select -->
+      <div class="select-wrapper w-full">
+        <select id="branch" formControlName="branch"
+          class="w-full h-[64px] border-[1px] border-solid border-[#C7C7C7] px-8 rounded-r-[16px]" required>
+          <option value="" disabled selected>Branch</option>
+          <option *ngFor="let branch of branches" [value]="branch.name">
+            {{ 'general.' + branch.name | translate }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="flex justify-between gap-2 w-full md:-mt-6 md:mb-6 -mt-2 mb-2 md:px-4">
+      <!-- Time Error -->
+      <div *ngIf="bookingForm.get('time')?.invalid && bookingForm.get('time')?.touched" class="text-[#F45859]">
+        <div *ngIf="bookingForm.get('time')?.hasError('required')">
+          Time is required.
+        </div>
+      </div>
+
+      <!-- Branch Error -->
+      <div *ngIf="bookingForm.get('branch')?.invalid && bookingForm.get('branch')?.touched" class="text-[#F45859]">
+        <div *ngIf="bookingForm.get('branch')?.hasError('required')">
+          Branch is required.
+        </div>
+      </div>
+    </div>
+
+    <!-- Name, Phone Number, and Note Inputs -->
+    <div class="flex flex-col justify-center items-center md:gap-4 gap-2 mt-4 w-full">
+      <!-- Name Input -->
+      <div class="flex flex-col md:w-auto w-full">
+        <input type="text" id="name" formControlName="name" placeholder="Your Name"
+          class="py-2 px-4 placeholder:text-[#616161] rounded-[16px] border-[1px] border-solid border-black w-full md:w-[649px] h-[56px]"
+          required>
+        <!-- Required Error Message -->
+        <div *ngIf="bookingForm.get('name')?.hasError('required') && bookingForm.get('name')?.touched"
+          class="text-[#F45859]">
+          Name is required.
+        </div>
+        <!-- Pattern Error Message -->
+        <div *ngIf="bookingForm.get('name')?.hasError('pattern') && bookingForm.get('name')?.touched"
+          class="text-[#F45859]">
+          Name must be alphabetic.
+        </div>
+      </div>
+
+      <!-- Phone Number Input -->
+      <div class="flex flex-col md:w-auto w-full">
+        <input type="tel" id="phone" formControlName="phone" placeholder="Phone Number"
+          class="py-2 px-4 placeholder:text-[#616161] rounded-[16px] border-[1px] border-solid border-black w-full md:w-[649px] h-[56px]"
+          required>
+        <!-- Required Error Message -->
+        <div *ngIf="bookingForm.get('phone')?.hasError('required') && bookingForm.get('phone')?.touched"
+          class="text-[#F45859]">
+          Phone Number is required.
+        </div>
+        <!-- Pattern Error Message -->
+        <div *ngIf="bookingForm.get('phone')?.hasError('pattern') && bookingForm.get('phone')?.touched"
+          class="text-[#F45859]">
+          Phone Number must be correct.
+        </div>
+      </div>
+
+      <!-- Car Details Inputs -->
+      <div class="flex flex-col md:flex-row justify-center items-center w-full md:w-[649px] gap-2">
+        <!-- Car Number Input -->
+        <div class="flex flex-col w-full">
+          <input type="text" id="carNumber" formControlName="carNumber" placeholder="Your Car Number"
+            class="py-2 px-4 placeholder:text-[#616161] rounded-[16px] border-[1px] border-solid border-black w-full md:w-[210px] h-[56px]"
+            required>
+          <div *ngIf="bookingForm.get('carNumber')?.invalid && bookingForm.get('carNumber')?.touched"
+            class="text-[#F45859]">
+            Car Number is required
+          </div>
+        </div>
+
+        <!-- Car Type Input -->
+        <div class="flex flex-col w-full">
+          <input type="text" id="carType" formControlName="carType" placeholder="Your Car Type"
+            class="py-2 px-4 placeholder:text-[#616161] rounded-[16px] border-[1px] border-solid border-black w-full md:w-[210px] h-[56px]"
+            required>
+          <div *ngIf="bookingForm.get('carType')?.invalid && bookingForm.get('carType')?.touched"
+            class="text-[#F45859]">
+            Car Type is required
+          </div>
+        </div>
+
+        <!-- Car Color Input -->
+        <div class="flex flex-col w-full">
+          <input type="text" id="carColor" formControlName="carColor" placeholder="Your Car Color"
+            class="py-2 px-4 placeholder:text-[#616161] rounded-[16px] border-[1px] border-solid border-black w-full md:w-[210px] h-[56px]"
+            required>
+          <div *ngIf="bookingForm.get('carColor')?.invalid && bookingForm.get('carColor')?.touched"
+            class="text-[#F45859]">
+            Car Color is required
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="my-6 w-full flex justify-center items-center">
+      <button type="submit"
+        class="bg-[#F45859] text-white w-5/6 md:w-[618px] h-[72px] flex justify-center items-center rounded-[16px] text-[32px] font-bold">
+        Order Now
+      </button>
+    </div>
+  </div>
+</form>

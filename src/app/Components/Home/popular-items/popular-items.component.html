@@ -1,0 +1,9 @@
+<section class="block items-center py-3 mb-10">
+  <h1 class="font-bold text-3xl my-6">{{'general.most_popular_items' | translate}}</h1>
+
+  <div class="flex flex-wrap justify-center items-center gap-6">
+    @for (item of product; track item.id) {
+    <app-popular-card [productItem]="item"></app-popular-card>
+    }
+  </div>
+</section>

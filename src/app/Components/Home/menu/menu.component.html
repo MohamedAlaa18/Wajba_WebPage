@@ -1,0 +1,19 @@
+<section class="block items-center py-3">
+  <h2 class="text-[32px] font-semibold">Our menu</h2>
+
+  <nav>
+    <ul class="flex gap-6 overflow-x-auto text-xl font-semibold whitespace-nowrap my-8">
+      <li *ngFor="let category of categories" (click)="selectCategory(category.id)"
+        class="cursor-pointer transition border-b border-[#F45859]"
+        [ngClass]="{'border-b-[3px] border-solid': selectedCategoryId === category.id}">
+        {{ category.name | translate }}
+      </li>
+    </ul>
+  </nav>
+
+  <div class="flex flex-wrap items-center justify-center gap-6">
+    <div *ngFor="let product of products">
+      <app-product-card [productItem]="product"></app-product-card>
+    </div>
+  </div>
+</section>

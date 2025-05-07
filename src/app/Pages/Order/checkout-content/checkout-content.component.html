@@ -1,0 +1,113 @@
+<h1 class="text-2xl font-bold text-[#F45859] text-center mb-8 mt-4">Check out</h1>
+
+<div class="mt-8 flex flex-col justify-between h-full overflow-y-auto">
+  <div class="flex flex-col gap-6" *ngIf="cart">
+    <ul class="space-y-4">
+      <li *ngFor="let item of cart.items; trackBy: trackByIndex" class="flex items-center gap-1">
+        <div class="relative">
+          <img [src]="item.imgUrl" alt="" class="rounded-xl object-cover w-[80px] h-[74.93px] mx-3" />
+
+          <p
+            class="bg-black text-white border-[2px] border-solid border-white absolute bottom-1 left-0 rounded-full w-[28px] h-[28px] flex items-center justify-center">
+            {{item.quantity}}</p>
+        </div>
+
+        <div>
+          <h3 class="text-sm font-semibold text-gray-900">{{ item.itemName }}</h3>
+
+          <dl class="mt-0.5 space-y-px text-sm">
+            <div class="text-[#818181]">
+              <div *ngFor="let variation of item.variations">
+                <div class="flex gap-1 items-center">
+                  <dt class="inline">{{ variation.name }}: </dt>
+                  <dd class="inline">{{ variation.attributeName }}</dd>
+                </div>
+              </div>
+            </div>
+
+            <div class="font-medium space-x-1 flex gap-1">
+              <dd class="inline">QAR {{ (item.price).toFixed(2) }}</dd>
+            </div>
+          </dl>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <h3 class="font-bold mb-2 mt-6">Save on your order</h3>
+  <div class="bg-white rounded-[4px] rounded-r-lg border-[1px] border-solid border-[#CCCCCC] flex items-center pl-1">
+    <img src="assets/images/promo-code.svg" alt="promo-code" class="w-[20px] h-[20px] mx-1">
+
+    <input type="voucher" id="voucherCode" placeholder="Enter voucher code"
+      class="w-full border-none focus:border-transparent focus:ring-transparent text-sm text-[#818181] outline-none" />
+
+    <button (click)="applyVoucher()"
+      class="text-[#F45859] text-[14px] font-semibold rounded-r-lg border-[1px] border-solid border-[#F45859] px-4 py-2 text-sm tracking-wide transition-none mt-0 w-auto shrink-0">
+      Submit
+    </button>
+  </div>
+
+  <h3 for="note" class="font-bold mb-2 mt-8">Pay with</h3>
+  <div class="flex flex-col md:justify-between justify-center gap-3 mt-2">
+    <button (change)="onNewCardSelected()" class="relative">
+      <label for="card"
+        class="flex gap-2 items-center p-2 border-[1px] border-solid border-[#CCCCCC4D] w-full h-[40px] rounded-[4px] text-[14px] cursor-pointer">
+        <img src="assets/images/new-card-icon.svg" alt="new-card-icon">
+        Add a new card
+      </label>
+
+      <input type="radio" id="card" name="size"
+        class="peer accent-[#F45859] scale-150 absolute top-[0.8rem] right-[1rem]" />
+    </button>
+
+    <div class="relative">
+      <label for="cash"
+        class="flex gap-2 items-center p-2 border-[1px] border-solid border-[#CCCCCC4D] w-full h-[40px] rounded-[4px] text-[14px] cursor-pointer">
+        <img src="assets/images/cash-icon.svg" alt="cash-icon">
+
+        Cash
+      </label>
+
+      <input type="radio" id="cash" name="size"
+        class="peer accent-[#F45859] scale-150 absolute top-[0.8rem] right-[1rem]" checked />
+    </div>
+  </div>
+
+  <h3 for="note" class="text-[14px] font-bold mb-2 mt-8">Payment summary</h3>
+  <div class="flex justify-end border-t border-gray-100">
+    <div class="w-screen max-w-lg space-y-4" *ngIf="cart">
+      <dl class="space-y-0.5 text-sm">
+        <div class="flex justify-between">
+          <dt>Subtotal</dt>
+          <dd>QAR {{cart.subTotal}}</dd>
+        </div>
+
+        <div class="flex justify-between text-[#F45859]">
+          <dt>Discount</dt>
+          <dd>- QAR {{cart.discountAmount }}</dd>
+        </div>
+
+        <div class="flex justify-between">
+          <dt>Service fee</dt>
+          <dd>QAR {{cart.deliveryFee}}</dd>
+        </div>
+
+        <div class="flex justify-between">
+          <dt>Delivery fee</dt>
+          <dd>QAR {{cart.deliveryFee}}</dd>
+        </div>
+
+        <div class="flex justify-between !text-base font-semibold">
+          <dt>Total amount</dt>
+          <dd>QAR {{(cart.totalAmount).toFixed(2)}}</dd>
+        </div>
+      </dl>
+
+      <div class="flex justify-end">
+        <button (click)="onPlaceOrderClicked()"
+          class="block w-5/6 rounded-full bg-[#F45859] hover:bg-[#D44E4F] transition px-5 py-2 mx-auto text-lg font-bold text-white mt-4">
+          Place Order
+        </button>
+      </div>
+    </div>
+  </div>

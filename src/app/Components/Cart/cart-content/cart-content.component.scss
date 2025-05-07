@@ -1,0 +1,9 @@
+.overflow-y-auto {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hover-fill:hover path {
+  fill: #D44E4F;
+  transition: 0.3s;
+}

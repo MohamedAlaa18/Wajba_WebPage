@@ -1,0 +1,26 @@
+<form [formGroup]="deliveryForm" (ngSubmit)="onSubmit()" id="map-container" class="rounded-2xl overflow-y-auto">
+  <input id="search-input" type="text" placeholder="Search for a place" class="search-bar" />
+  <div id="map" class="mx-8"></div>
+
+  <!-- Submit Button -->
+  <div class="pb-6 pt-3 px-8 w-full h-[200px] bg-white rounded-b-2xl">
+    <!-- Paragraph to display the selected location -->
+
+    <!-- <p id="selected-location" class="text-[#616161] text-[24px] mb-4">The location</p> -->
+
+    <!-- Validation Message -->
+    <input id="selected-location" formControlName="location" placeholder="Select location"
+      class="text-[#616161] text-[24px] mb-4 w-full" readonly />
+
+    <div *ngIf="deliveryForm.get('location')?.invalid && deliveryForm.get('location')?.touched"
+      class="text-[#F45859] -mt-4 mb-4">
+      Location is required
+    </div>
+
+    <button type="submit"
+      class="bg-[#F45859] text-white w-full h-[64px] flex justify-center items-center rounded-[16px] text-[32px] font-bold"
+      (click)="onSubmit()">
+      Order Now
+    </button>
+  </div>
+</form>

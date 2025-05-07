@@ -1,0 +1,188 @@
+<header [ngClass]="{ 'invisible': isOrderTypeRoute}"
+  class="md:bg-white bg-[#F45859] md:shadow-[0_4px_16px_0px_rgba(204,204,204,0.4)] shadow-none fixed w-full top-0 z-10 md:z-30 md:min-h-24 flex items-center">
+  <div class="flex justify-center items-center w-full md:max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-1">
+    <div class="flex gap-4 items-center justify-between w-full">
+      <div class="block md:hidden">
+        <button (click)="openCart()">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M1.54047 0.792418C1.1497 0.655028 0.721552 0.860438 0.584162 1.2512C0.446782 1.64197 0.652181 2.07012 1.04295 2.2075L1.30416 2.29934C1.97177 2.53406 2.41052 2.68961 2.73336 2.84802C3.03659 2.9968 3.17026 3.11723 3.25832 3.24609C3.34858 3.37818 3.41828 3.5596 3.45761 3.92295C3.49877 4.30316 3.49979 4.79837 3.49979 5.53832V8.14C3.49979 11.0816 3.56302 12.0523 4.42943 12.9662C5.29583 13.88 6.69028 13.88 9.4792 13.88H14.7821C16.3431 13.88 17.1236 13.88 17.6753 13.4304C18.227 12.9808 18.3846 12.2164 18.6997 10.6875L19.1995 8.26275C19.5466 6.52369 19.7202 5.65417 19.2762 5.07708C18.8323 4.5 17.3155 4.5 15.6305 4.5H4.99233C4.98564 4.22967 4.97295 3.98373 4.9489 3.76153C4.89517 3.26515 4.77875 2.81243 4.49677 2.39979C4.21259 1.98393 3.83474 1.71759 3.39411 1.50139C2.98203 1.29919 2.45839 1.11511 1.84187 0.898378L1.54047 0.792418ZM8.7395 7.37473C8.6703 6.96633 8.28312 6.69135 7.87473 6.76054C7.46633 6.82972 7.19135 7.21688 7.26054 7.62527L7.78872 10.7431C7.85791 11.1515 8.24507 11.4265 8.6535 11.3573C9.0619 11.2881 9.3368 10.901 9.2677 10.4926L8.7395 7.37473ZM14.1536 6.76054C13.7452 6.69135 13.358 6.96633 13.2889 7.37473L12.7607 10.4926C12.6915 10.901 12.9665 11.2881 13.3749 11.3573C13.7833 11.4265 14.1704 11.1515 14.2396 10.7431L14.7678 7.62527C14.837 7.21688 14.562 6.82972 14.1536 6.76054ZM6 16.5C6.82843 16.5 7.5 17.1716 7.5 18C7.5 18.8284 6.82843 19.5 6 19.5C5.17157 19.5 4.5 18.8284 4.5 18C4.5 17.1716 5.17157 16.5 6 16.5ZM15 16.5001C15.8284 16.5001 16.5 17.1716 16.5 18.0001C16.5 18.8285 15.8284 19.5001 15 19.5001C14.1716 19.5001 13.5 18.8285 13.5 18.0001C13.5 17.1716 14.1716 16.5001 15 16.5001Z"
+              fill="white" />
+          </svg>
+        </button>
+      </div>
+
+      <a class="block text-teal-600 md:w-auto md:h-20 w-[55.56px] py-3 md:py-0" href="/">
+        <span class="sr-only">Home</span>
+        <img src="assets/images/header_logo.png" alt="logo" class="md:w-auto md:h-20 w-[55.56px]">
+      </a>
+
+      <div class="relative font-medium md:block hidden" #branchDropdown>
+        <button class="inline-flex gap-2 items-center overflow-hidden rounded-md border bg-white"
+          (click)="toggleBranchDropdown()">
+          <a href="#" class="border-e">
+            {{ 'general.' + selectedBranch | translate }}
+          </a>
+
+          <div class="h-full text-[#F45859] transition" [ngClass]="{'rotate-180':isBranchDropdownOpen}">
+            <span class="sr-only">Menu</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd"
+                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                clip-rule="evenodd" />
+            </svg>
+          </div>
+        </button>
+
+        <div
+          class="absolute start-0 z-10 mt-12  min-w-24 rounded-xl border-solid border-[1px] border-[#E3E3E3] bg-white shadow-lg"
+          role="menu" [class.hidden]="!isBranchDropdownOpen">
+          <div class="p-2">
+            <label *ngFor="let branch of branches"
+              class="flex gap-2 items-center rounded-lg p-2 text-base text-gray-900 hover:bg-gray-50 hover:text-gray-700">
+              <input type="radio" name="branch" [value]="branch.name" class="accent-[#F45859]"
+                (change)="selectBranch(branch)" [checked]="selectedBranch === branch.name">
+              {{ 'general.' + branch.name | translate }}
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <nav aria-label="Global" class="md:flex hidden items-center justify-center gap-4">
+        <ul class="flex items-center justify-center gap-4">
+          <li>
+            <a routerLink="/" routerLinkActive="active-link"
+              class="text-gray-900 transition hover:text-[#F45859] font-semibold"
+              [routerLinkActiveOptions]="{ exact: true }">
+              {{ 'general.home' | translate }}
+            </a>
+          </li>
+          <li>
+            <a routerLink="/offers" routerLinkActive="active-link"
+              class="text-gray-900 transition hover:text-[#F45859] font-semibold">
+              {{ 'general.offers' | translate }}
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="md:flex hidden items-center justify-center gap-4 font-semibold">
+        <div class='w-60 max-w-sm mx-auto lg:block hidden'>
+          <div
+            class="relative flex gap-2 items-center justify-center w-full h-10 px-2 rounded-xl lg:rounded-full focus-within:bg-white focus-within:border-solid border-[1px] border-[#F45859] bg-[#E3E3E3] transition overflow-hidden">
+            <div class="grid place-items-center h-full w-6 text-gray-300">
+              <img src="assets/images/search.svg" alt="search">
+            </div>
+
+            <input
+              class="h-full w-full outline-none bg-[#E3E3E3] focus:bg-white placeholder:text-[#555457] placeholder:font-medium pr-2 transition"
+              type="search" id="search" placeholder="{{'general.search' | translate}}" />
+          </div>
+        </div>
+
+        <div class="relative" #languageDropdown>
+          <button
+            class="flex gap-2 items-center rounded-full border-solid border-[1px] border-[#E3E3E3] min-w-[114px] h-10 px-4 text-gray-900 transition"
+            (click)="toggleLanguageDropdown()">
+            <span class="sr-only">Change Language</span>
+            <img [src]="selectedLanguageImage" [alt]="selectedLanguage" class="w-4 h-4">
+            {{ selectedLanguage | translate }}
+          </button>
+
+          <div
+            class="absolute start-0 mt-8 z-10 w-full min-w-[159px] rounded-xl border border-gray-100 bg-white shadow-lg"
+            role="menu" [class.hidden]="!isLanguageDropdownOpen">
+            <div class="p-2">
+              @for (language of languages; track $index) {
+              <a href="#"
+                class="flex gap-2 items-center rounded-lg p-2 text-base text-gray-900 hover:bg-gray-50 hover:text-gray-700"
+                role="menuitem" (click)="changeLanguage($event, language.code, language.imgSrc, language.label)">
+                <img [src]="language.imgSrc" [alt]="language.alt" class="w-4 h-4">
+                {{ language.label | translate }}
+              </a>
+              }
+            </div>
+          </div>
+        </div>
+
+        <button *ngIf="cart"
+          class="hidden rounded-full bg-black px-4 h-10 text-sm font-medium text-white transition min-w-[105px] sm:flex gap-1 items-center justify-center"
+          (click)="openCart()">
+          <img src="assets/images/balance.svg" alt="balance">
+
+          {{'general.qar' | translate}} {{(cart.totalAmount).toFixed(2)}}
+        </button>
+
+        <div class="relative" #profileDesktopDropdown>
+          <a *ngIf="!(user && token)" href="/login"
+            class="flex gap-2 items-center justify-center rounded-full bg-[#F45859] hover:bg-[#D44E4F] transition min-w-[96px] pl-4 pr-5 h-10 text-sm font-medium text-white">
+            <img src="assets/images/profile.svg" alt="profile">
+            {{ 'general.log_in' | translate }}
+          </a>
+
+          <button *ngIf="user && token"
+            class="flex gap-2 items-center justify-center rounded-full bg-[#F45859] hover:bg-[#D44E4F] transition min-w-[148px] px-4 h-10 text-sm font-medium text-white"
+            (click)="toggleProfileDesktopDropdown()">
+            <img src="assets/images/profile.svg" alt="profile">
+            {{ 'general.account' | translate }}
+            <img src="assets/images/arrow-down.svg" alt="arrow-down">
+          </button>
+
+          <div *ngIf="user && token"
+            class="absolute end-0 z-10 mt-12 w-full min-w-[350px] rounded-xl bg-white font-bold shadow-[0_4px_12px_0px_#CCCCCC80]"
+            role="menu" [class.hidden]="!isProfileDesktopDropdownOpen">
+            <div>
+              <div class="flex justify-center items-center gap-2 my-8">
+                <div class="relative">
+                  <img src="assets/images/profile.jpeg" alt="Profile"
+                    class="w-[96px] h-[90px] rounded-full border-[1px] border-dashed border-[#F45859]">
+                  <button class="absolute bottom-0 right-0">
+                    <img src="assets/images/edit-profile-image.svg" alt="edit-profile-image">
+                  </button>
+                </div>
+                <div>
+                  <p class="capitalize">{{user.userName}}</p>
+                  <p class="text-sm text-gray-600 font-normal">{{user.email}}</p>
+                </div>
+              </div>
+
+              @for (item of profileMenuItems; track $index) {
+              <a [href]="item.href"
+                class="flex gap-2 items-center rounded-lg py-3 px-6 text-base text-gray-900 hover:text-[#F45859] transition"
+                role="menuitem" (click)="item.icon === 'logout' ? logout() : null">
+                <img [src]="item.src" [alt]="item.src">
+
+                {{ item.label | translate }}
+              </a>
+              @if ($index != profileMenuItems.length - 1) {
+              <hr class="w-full border-t-[1px] border-solid border-gray-300">
+              }
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="block md:hidden" #profileMobileDropdown>
+        <button (click)="toggleProfileMobileDropdown()">
+          <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3.5 18.5V16.5H21.5V18.5H3.5ZM3.5 13.5V11.5H21.5V13.5H3.5ZM3.5 8.5V6.5H21.5V8.5H3.5Z"
+              fill="white" />
+          </svg>
+        </button>
+
+        <div class="absolute top-0 right-0 z-20 w-[100dvw] h-[100dvh] bg-white font-bold" role="menu"
+          [class.hidden]="!isProfileMobileDropdownOpen">
+
+          <app-mobile-profile-menu [profileMenuItems]="profileMenuItems" [selectedBranch]="selectedBranch"
+            [showBranches]="showBranches" [isProfileMobileDropdownOpen]="isProfileMobileDropdownOpen"
+            [languages]="languages" [restaurant]="restaurant" [user]="user" [token]="token"
+            (toggleProfileMobileDropdown)="toggleProfileMobileDropdown()"
+            (changeLanguage)="changeLanguage($event.event, $event.language, $event.image, $event.name)"
+            (toggleBranches)="toggleBranches()" (selectBranch)="selectBranch($event)"
+            (logout)="logout()"></app-mobile-profile-menu>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

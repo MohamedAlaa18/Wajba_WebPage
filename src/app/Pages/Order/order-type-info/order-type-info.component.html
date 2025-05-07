@@ -1,0 +1,70 @@
+<div class="flex flex-col gap-3 capitalize" *ngIf="bookingData.type !== 'delivery'">
+  <p class="font-bold mb-2 text-[23.19px] text-center">Your Order type Info</p>
+
+  <p *ngIf="user" class="my-4 capitalize">{{user.userName}}</p>
+
+  <div class="flex justify-between">
+    <span class="flex items-center gap-2" *ngIf="bookingData">
+      <img src="assets/images/dine-in.svg" alt="dine-in" class="scale-150">
+
+      {{bookingData.type}}
+    </span>
+
+    <span *ngIf="bookingData.type === 'dine-in'">{{bookingData.persons}} people</span>
+    <span *ngIf="bookingData.type === 'drive-thru'">{{bookingData.carType}}</span>
+  </div>
+
+  <div class="flex justify-between">
+    <span class="flex items-center gap-2" *ngIf="bookingData">
+      <img src="assets/images/clock.svg" alt="clock" class="scale-150">
+
+      {{bookingData.time}}
+    </span>
+
+    <span *ngIf="bookingData.type === 'dine-in'">{{ bookingData.date | date: 'd MMMM yyyy' }}</span>
+    <span *ngIf="bookingData.type === 'drive-thru'">{{bookingData.carNumber}}</span>
+  </div>
+
+  <div class="flex justify-between">
+    <span class="flex items-center gap-2 capitalize" *ngIf="selectedBranch">
+      <img src="assets/images/branch.svg" alt="branch" class="scale-150">
+
+      {{selectedBranch.name}}
+    </span>
+
+    <span *ngIf="bookingData.type === 'drive-thru'">{{bookingData.carColor}}</span>
+  </div>
+</div>
+
+<div class="flex flex-col gap-3 capitalize " *ngIf="bookingData.type === 'delivery'">
+  <p class="font-bold mb-2 text-[23.19px] text-center">Delivery info</p>
+
+  <div class=" text-[21.47px] text-[#37474F]">
+    <div class="rounded-2xl rounded-b-none overflow-hidden">
+      <google-map [height]="'202.4px'" [width]="'100%'" [center]="center" [zoom]="15" [options]="mapOptions">
+        <map-marker [position]="center"></map-marker>
+      </google-map>
+    </div>
+
+    <div class="p-2 border-[1px] border-solid border-[#B3B3B3] border-t-0 rounded-2xl rounded-t-none">
+      <span class="flex gap-2" *ngIf="bookingData">
+        <app-icon iconName="location"></app-icon>
+
+        Your location: {{bookingData.location}}
+      </span>
+      <span class="flex items-center gap-2 mt-2" *ngIf="user">
+        Mobile number: 01289643240
+        <!-- {{user.phoneNumber}} -->
+      </span>
+    </div>
+  </div>
+  <div class=" text-[21.47px] border-[1px] border-solid border-[#B3B3B3] rounded-2xl p-2">
+    <span class="flex items-center gap-2 font-bold" *ngIf="bookingData">
+      <app-icon iconName="delivery"></app-icon>
+
+      {{bookingData.type}}
+    </span>
+
+    <p>Arriving in approx : {{approximateTime}}</p>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+.pb-0 {
+  padding-bottom: 0px;
+}
+
+button svg.hover-fill path {
+  transition: 0.3s;
+}
+
+button:hover svg.hover-fill path {
+  fill: #F45859;
+}
+
+.overflow-y-auto {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  max-height: 90dvh;
+}

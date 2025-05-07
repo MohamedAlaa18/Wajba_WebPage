@@ -1,0 +1,166 @@
+<div *ngIf="isModalOpen" id="default-modal" tabindex="-1" aria-hidden="true"
+  class="fixed top-0 right-0 left-0 z-50 w-full h-full bg-opacity-50 bg-black flex justify-center items-center"
+  (click)="closeModal()">
+  <div class="max-w-screen-xl px-4 sm:px-6 lg:px-8 xl:px-1" [class.max-h-[60dvh]]="isEditMode" *ngIf="productItem">
+    <div class="relative p-4 w-full max-w-[30rem] bg-white rounded-2xl" (click)="$event.stopPropagation()">
+      <!-- Modal content -->
+      <form (ngSubmit)="onSubmit()" [formGroup]="cartForm">
+        <div class="relative p-4">
+          <!-- Modal header -->
+          <div class="flex items-center justify-between border-b rounded-t">
+            <div></div>
+            <button type="button" (click)="closeModal()"
+              class="text-gray-400 bg-transparent rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center">
+              <app-icon iconName="close" color="#F45859"></app-icon>
+              <span class="sr-only">Close modal</span>
+            </button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="space-y-4 body h-full overflow-y-auto">
+            <ul class="space-y-4">
+              <li class="flex items-center gap-4">
+                <img [src]="productItem.imageUrl" alt="product-image"
+                  class="rounded-xl object-cover w-[86.34px] h-[80.87px]" />
+
+                <div class="text-[15.11px] ">
+                  <h3 class="font-bold text-gray-900">{{ productItem.name }}</h3>
+
+                  <dl class="mt-0.5 space-y-px">
+                    <div class="text-[#818181] space-x-1 line-clamp-2">
+                      <dt class="inline">description:</dt>
+                      <dd class="inline">{{ productItem.description }}</dd>
+                    </div>
+
+                    <div class="font-bold space-x-1 flex gap-1">
+                      <dt class="inline">QAR</dt>
+                      <dd class="inline">{{ (productItem.price).toFixed(2) }}</dd>
+                    </div>
+                  </dl>
+                </div>
+
+                <div class="flex flex-1 items-center justify-end gap-2">
+                  <button (click)="closeModal()" class="text-gray-600 transition hover:text-red-600"
+                    *ngIf="quantity === 1">
+                    <span class="sr-only">Remove item</span>
+                    <app-icon iconName="remove" color=" #F45859"></app-icon>
+                  </button>
+
+                  <button *ngIf="quantity > 1" (click)="decrementQuantity($event)"
+                    class="text-gray-600 transition hover:text-red-600">
+                    <span class="sr-only">Decrement quantity</span>
+                    <app-icon iconName="decrement" color="#F45859"></app-icon>
+                  </button>
+
+                  <form>
+                    <label for="Line2Qty" class="sr-only">Quantity</label>
+                    <input type="number" min="1" [(ngModel)]="quantity" id="Line2Qty" name="quantity"
+                      class="h-8 max-w-8 rounded border-gray-200 p-0 text-center text-sm focus:outline-none" />
+                  </form>
+
+                  <button (click)="incrementQuantity($event)" class="text-gray-600 transition hover:text-red-600">
+                    <span class="sr-only">Increment quantity</span>
+                    <app-icon iconName="increment" color="#F45859"></app-icon>
+                  </button>
+                </div>
+              </li>
+            </ul>
+
+            <div>
+              <h5 class="font-bold">Description</h5>
+              <p class="text-[#777777]">{{productItem.description}}</p>
+            </div>
+
+            <div>
+              <!-- Variations -->
+              <div *ngFor="let attribute of productItem.attributes; let i = index">
+                <h5 class="text-[14.81px] font-bold capitalize mt-3">{{ attribute.attributeName }}</h5>
+                <div class="flex flex-wrap md:justify-between justify-center gap-3 mt-2" [formArrayName]="'variations'">
+                  <div *ngFor="let variation of attribute.variations; let vIndex = index" class="relative">
+                    <input type="radio" [id]="variation.id" [formControlName]="i.toString()" [value]="variation.id"
+                      class="peer accent-[#F45859] scale-150 absolute top-[1.5rem] left-[1rem]" />
+                    <label [for]="variation.id"
+                      class="flex flex-col px-10 py-2 bg-[#CCCCCC4D] w-[202.01px] h-[58.17px] rounded-[8.46px] text-[14.81px] font-medium cursor-pointer peer-checked:bg-[#F4585933] peer-checked:border-[1px] peer-checked:border-solid peer-checked:border-[#F45859] capitalize">
+                      {{ variation.name }}
+                      <span class="font-bold">
+                        QAR {{ variation.additionalPrice }}
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Addons -->
+              <div *ngIf="productItem.itemAddons.length != 0">
+                <div class="flex justify-between mb-4 mt-8">
+                  <h5 class="text-[17.18px] font-bold">Addons</h5>
+                  <div class="bg-[#CCCCCC4D] rounded-[17.18px] text-[15.03px] font-bold py-1 px-4">Optional</div>
+                </div>
+
+                <div formArrayName="addons">
+                  <div *ngFor="let addon of productItem.itemAddons; let j = index">
+                    <label class="flex items-center justify-between gap-4 w-full cursor-pointer">
+                      <span class="capitalize">{{ addon.name }}</span>
+                      <div class="flex items-center gap-4">
+                        <span>QAR {{ addon.price }}</span>
+                        <input type="checkbox" [formControlName]="j.toString()" class="mr-2 accent-[#F45859]" />
+                      </div>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="productItem.itemExtras.length != 0">
+              <div class="justify-between mb-4 mt-8">
+                <h5 class="text-[16.29px] font-bold">Often order with</h5>
+
+                <div class="text-[#8E8E8E] text-[15.03px]">
+                  People usually order these items as well
+                </div>
+              </div>
+
+              <div class="flex flex-wrap md:justify-start justify-center gap-4">
+                <div *ngFor="let extra of productItem.itemExtras"
+                  class="rounded-3xl border-[0.5px] border-solid border-[#E3E3E3] w-[147px]">
+                  <div>
+                    <img src="assets/images/108de791e893aeddf22c1c3f39465788.jpeg" alt="extra"
+                      class="rounded-t-3xl w-[147px] h-[113.63px]">
+
+                    <div class="p-2">
+                      <p class="text-sm font-semibold capitalize">{{ extra.name }}</p>
+                      <!-- <p class="text-xs text-[#818181] decoration line-through">{{ extra.originalPrice }}</p> -->
+                      <p class="font-semibold" [class.mt-3]="!extra.originalPrice">QAR {{
+                        (extra.additionalPrice).toFixed(2) }}</p>
+
+                      <button type="button" (click)="addExtra(extra)"
+                        class="block w-full rounded-full bg-[#F45859] hover:bg-[#D44E4F] transition mx-auto font-bold p-1 mt-2 text-white">
+                        +Add
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="my-6">
+              <h3 for="note" class="font-bold mb-2">special instructions</h3>
+              <div class="h-[75px]">
+                <textarea id="note" rows="4"
+                  class="block p-2.5 w-full min-f-[16px] text-[#616161] border-[1px] border-solid border-[#CCCCCC] outline-none rounded-lg"
+                  placeholder="Note">
+                </textarea>
+              </div>
+            </div>
+
+            <div class="font-bold mb-2 h-[2rem]"></div>
+            <button type="submit"
+              class="block w-full rounded-full bg-[#F45859] hover:bg-[#D44E4F] transition px-5 py-2 mx-auto text-lg font-bold text-white">
+              Add To Cart Qar {{(calculateTotalPrice()).toFixed(2)}}
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

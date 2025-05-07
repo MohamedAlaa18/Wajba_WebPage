@@ -1,0 +1,35 @@
+<header class="bg-white shadow-[0_4px_16px_0px_rgba(204,204,204,0.4)] fixed w-full top-0 z-50">
+  <div class="flex max-w-screen-xl justify-center items-center mx-auto px-4 sm:px-6 lg:px-8 xl:px-1">
+    <div class="flex gap-4 items-center justify-between w-full py-2">
+      <a class="block text-teal-600 h-20">
+        <span class="sr-only">Home</span>
+        <img src="/assets/images/header_logo.png" alt="logo" class="h-20">
+      </a>
+      <div></div>
+    </div>
+  </div>
+</header>
+
+<section class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 xl:px-1">
+  <button (click)="openModal()"
+    class="w-full lg:w-[764.99px] h-[74.63px] rounded-[16.33px] border-[1px] border-solid border-[#616161] flex items-center gap-4 px-6 mx-auto mb-16">
+    <span class="text-[23.32px] text-[#625B71]"> Select Type Order</span>
+
+    <svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M5.68282 7.00006L0.318542 1.63578L1.95115 0.00317383L8.94804 7.00006L1.95115 13.997L0.318542 12.3643L5.68282 7.00006Z"
+        fill="#625B71" />
+    </svg>
+  </button>
+
+  <h2 class="text-[36px] font-semibold text-center">Order, Eat, Repeat.. Anytime, Anywhere</h2>
+
+  <div class="flex flex-wrap justify-center items-center gap-4 mt-10 mb-20">
+    <img src="assets/images/appStore.svg" alt="appStore">
+    <img src="assets/images/googlePaly.svg" alt="googlePaly">
+  </div>
+
+  <app-carousel [images]="carouselImages"></app-carousel>
+</section>
+
+<app-order-type-modal [isModalOpen]="isModalOpen" (closeModalEvent)="closeModal()"></app-order-type-modal>

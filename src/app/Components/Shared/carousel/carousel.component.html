@@ -1,0 +1,12 @@
+<div class="carousel-container relative mb-12 overflow-hidden flex justify-center items-center">
+  <div class="carousel-track flex gap-6 ease-in-out overflow-auto">
+    <ng-container *ngFor="let image of images; let i = index">
+      <div
+        class="carousel-item flex-shrink-0 w-[409.7px] h-[252.4px] md:w-[614.6px] md:h-[378.6px] lg:w-[922px] lg:h-[568px] flex items-center justify-center">
+        <img [src]="image" class="w-full h-full object-cover rounded-2xl transition-transform"
+          [ngClass]="currentIndex !== 0 ? 'duration-500' : 'duration-0'" [class.opacity-50]="i !== currentIndex"
+          [style.transform]="getTranslateX()" />
+      </div>
+    </ng-container>
+  </div>
+</div>

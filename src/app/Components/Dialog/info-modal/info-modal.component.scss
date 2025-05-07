@@ -1,0 +1,7 @@
+button svg.hover-fill path {
+  transition: 0.3s;
+}
+
+button:hover svg.hover-fill path {
+  fill: #D44E4F;
+}

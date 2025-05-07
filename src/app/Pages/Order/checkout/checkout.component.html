@@ -1,0 +1,9 @@
+<section class="flex flex-wrap gap-8 justify-center my-32 mx-auto ">
+  <div class="shadow-[0_4px_16px_0px_#CCCCCC4D] rounded-2xl text-2xl w-full md:w-[471px] h-fit px-4 py-8">
+    <app-order-type-info [bookingData]="bookingData" [selectedBranch]="selectedBranch"></app-order-type-info>
+  </div>
+
+  <div class="h-full w-full md:w-[436px] shadow-[0_4px_16px_0_#CCCCCC4D] rounded-2xl p-4">
+    <app-checkout-content (placeOrder)="placeOrder()"></app-checkout-content>
+  </div>
+</section>

@@ -1,0 +1,21 @@
+@media (min-width: 1024px) {
+  .lg\:px-8 {
+    padding-left: 2rem
+      /* 32px */
+    ;
+    padding-right: 2rem
+      /* 32px */
+    ;
+  }
+}
+
+@media (min-width: 1320px) {
+  .xl\:px-1 {
+    padding-left: 0.25rem
+      /* 4px */
+    ;
+    padding-right: 0.25rem
+      /* 4px */
+    ;
+  }
+}

@@ -1,0 +1,157 @@
+<div class="mx-auto max-w-3xl h-full">
+  <header class="text-center flex justify-between items-center">
+    <div></div>
+    <button (click)="closeCart()" class="hover-fill">
+      <svg width="24" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M12.1443 22C6.62129 22 2.14429 17.523 2.14429 12C2.14429 6.477 6.62129 2 12.1443 2C17.6673 2 22.1443 6.477 22.1443 12C22.1443 17.523 17.6673 22 12.1443 22ZM12.1443 10.586L9.31629 7.757L7.90129 9.172L10.7303 12L7.90129 14.828L9.31629 16.243L12.1443 13.414L14.9723 16.243L16.3873 14.828L13.5583 12L16.3873 9.172L14.9723 7.757L12.1443 10.586Z"
+          fill="#F45859" />
+      </svg>
+    </button>
+  </header>
+
+  <div class="flex justify-between">
+    <button (click)="clear()"><app-icon iconName="clear"></app-icon></button>
+    <h1 class="text-2xl font-bold text-[#F45859] text-center">My Cart</h1>
+    <div></div>
+  </div>
+
+  <div *ngIf="cart && cart.items.length > 0" class="mt-8 flex flex-col justify-between h-full overflow-y-auto">
+    <div class="flex flex-col gap-6">
+      <ul class="space-y-4">
+        <li *ngFor="let item of cart.items; trackBy: trackByIndex" class="flex items-center gap-4">
+          <img [src]="item.imgUrl" alt="" class="rounded-xl object-cover w-[80px] h-[74.93px]" />
+
+          <div>
+            <h3 class="text-sm font-semibold text-gray-900">{{ item.itemName }}</h3>
+
+            <dl class="mt-0.5 space-y-px text-sm">
+              <div class="text-[#818181]">
+                <div *ngFor="let variation of item.variations">
+                  <div class="flex gap-1 items-center">
+                    <dt class="inline">{{ variation.name }}: </dt>
+                    <dd class="inline">{{ variation.attributeName }}</dd>
+                  </div>
+                </div>
+              </div>
+
+              <div class="font-medium space-x-1 flex justify-between">
+                <dt class="inline">QAR</dt>
+                <dd class="inline">{{ (item.price).toFixed(2) }}</dd>
+
+                <button (click)="openAddModal(item)" class="text-[#F45859] flex gap-1 text-xs font-bold">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M4.09749 12.6875H5.04016L11.2495 6.47814L10.3068 5.53547L4.09749 11.7448V12.6875ZM14.7642 14.0208H2.76416V11.1921L11.7208 2.23547C11.8458 2.11049 12.0154 2.04028 12.1922 2.04028C12.3689 2.04028 12.5385 2.11049 12.6635 2.23547L14.5495 4.12147C14.6745 4.24649 14.7447 4.41603 14.7447 4.59281C14.7447 4.76958 14.6745 4.93912 14.5495 5.06414L6.92616 12.6875H14.7642V14.0208ZM11.2495 4.59281L12.1922 5.53547L13.1348 4.59281L12.1922 3.65014L11.2495 4.59281Z"
+                      fill="#F45859" />
+                  </svg>
+                  <span class="underline decoration"> Edit</span>
+                </button>
+              </div>
+            </dl>
+          </div>
+
+          <div class="flex flex-1 items-center justify-end gap-2">
+            <button (click)="onRemove(item.cartItemId)" class="text-gray-600 transition hover:text-red-600"
+              *ngIf="item.quantity === 1">
+              <span class="sr-only">Remove item</span>
+              <app-icon iconName="remove" color=" #F45859"></app-icon>
+            </button>
+
+            <button *ngIf="item.quantity > 1" (click)="decrementQuantity(item)"
+              class="text-gray-600 transition hover:text-red-600">
+              <span class="sr-only">Decrement quantity</span>
+              <app-icon iconName="decrement" color="#F45859"></app-icon>
+            </button>
+
+            <form>
+              <label for="Line2Qty" class="sr-only"> Quantity </label>
+              <input type="number" min="1" [value]="item.quantity" id="Line2Qty"
+                class="h-8 max-w-8 rounded border-gray-200 p-0 text-center text-sm [-moz-appearance:_textfield] focus:outline-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
+                readonly />
+            </form>
+
+            <button (click)="incrementQuantity(item)" class="text-gray-600 transition hover:text-red-600">
+              <span class="sr-only">Increment quantity</span>
+              <app-icon iconName="increment" color="#F45859"></app-icon>
+            </button>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <h3 class="font-bold mb-2 mt-6">Save on your order</h3>
+
+    <div class="bg-white rounded-[4px] border-[1px] border-solid border-[#CCCCCC] flex items-center px-1">
+      <img src="assets/images/promo-code.svg" alt="promo-code" class="w-[20px] h-[20px] mx-1">
+
+      <input type="voucher" id="voucherCode" placeholder="Enter voucher code"
+        class="w-full border-none focus:border-transparent focus:ring-transparent text-sm text-[#818181] outline-none" />
+
+      <button (click)="applyVoucher()"
+        class="text-[#F45859] rounded-xl px-4 py-2 text-sm tracking-wide transition-none mt-0 w-auto shrink-0">
+        Submit
+      </button>
+    </div>
+
+    <h3 for="note" class="font-bold mb-2 mt-6">special instructions</h3>
+    <div class="h-[75px]">
+      <textarea id="note" rows="4"
+        class="block p-2.5 w-full min-f-[16px] text-[#616161] border-[1px] border-solid border-[#CCCCCC] outline-none"
+        placeholder="Note"></textarea>
+    </div>
+
+    <h3 for="note" class="text-[14px] font-bold mb-1 mt-16">Payment summary</h3>
+    <div class="flex justify-end border-t border-gray-100">
+      <div class="w-screen max-w-lg space-y-4">
+        <dl class="space-y-0.5 text-sm">
+          <div class="flex justify-between">
+            <dt>Subtotal</dt>
+            <dd>QAR {{cart.subTotal}}</dd>
+          </div>
+
+          <div class="flex justify-between text-[#F45859]">
+            <dt>Discount</dt>
+            <dd>- QAR {{cart.discountAmount }}</dd>
+          </div>
+
+          <div class="flex justify-between">
+            <dt>Service fee</dt>
+            <dd>QAR {{cart.deliveryFee}}</dd>
+          </div>
+
+          <div class="flex justify-between">
+            <dt>Delivery fee</dt>
+            <dd>QAR {{cart.deliveryFee}}</dd>
+          </div>
+
+          <div class="flex justify-between !text-base font-semibold">
+            <dt>Total amount</dt>
+            <dd>QAR {{(cart.totalAmount).toFixed(2)}}</dd>
+          </div>
+        </dl>
+
+        <div class="flex justify-end">
+          <button
+            class="block w-5/6 rounded-full bg-[#F45859] hover:bg-[#D44E4F] transition px-5 py-2 mx-auto text-lg font-bold text-white mt-4"
+            (click)="onCheckout()">
+            Proceed To Checkout
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!(cart && cart.items.length > 0)" class="flex flex-col justify-center items-center">
+    <div class="flex justify-center items-center rounded-full bg-[#FEEEEE] w-[160px] h-[150px] my-8">
+      <img src="assets/images/empty-cart.png" alt="empty" class="w-[122px] h-[115px]">
+    </div>
+
+    <p class="text-[#818181] text-center px-1">
+      Et fuga sunt mollitia earum corrupti deleniti sequi. Et fuga sunt mollitia earum corrupti
+    </p>
+  </div>
+</div>
+
+<app-add-to-cart-modal [isModalOpen]="isEditModalOpen" (closeModalEvent)="closeAddModal()" [cartItem]="selectedItem"
+  [isEditMode]="true"></app-add-to-cart-modal>

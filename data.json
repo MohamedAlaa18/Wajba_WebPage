@@ -1,0 +1,132 @@
+{
+  "menu": [
+    {
+      "id": 1,
+      "name": "Appetizers",
+      "imgSrc": "https://via.placeholder.com/305x225"
+    },
+    {
+      "id": 2,
+      "name": "Flame Grill Burger",
+      "imgSrc": "https://via.placeholder.com/305x225"
+    },
+    {
+      "id": 3,
+      "name": "Veggie & Plat Base Burger",
+      "imgSrc": "https://via.placeholder.com/305x225"
+    },
+    {
+      "id": 4,
+      "name": "Sandwich From the Grill",
+      "imgSrc": "https://via.placeholder.com/305x225"
+    },
+    {
+      "id": 5,
+      "name": "Hot Chicken Entrees",
+      "imgSrc": "https://via.placeholder.com/305x225"
+    },
+    {
+      "id": 6,
+      "name": "Appetizers",
+      "imgSrc": "https://via.placeholder.com/305x225"
+    },
+    {
+      "id": 7,
+      "name": "Appetizers",
+      "imgSrc": "https://via.placeholder.com/305x225"
+    },
+    {
+      "id": 8,
+      "name": "Appetizers",
+      "imgSrc": "https://via.placeholder.com/305x225"
+    }
+  ],
+  "product": [
+    {
+      "id": 1,
+      "imgSrc": "https://via.placeholder.com/305x225",
+      "name": "Poached Pear Salad",
+      "description": "Poached pear and goat cheese salad made with mixed greens, poached pears an..",
+      "price": 3.0,
+      "size": "regular-Single",
+      "quantity": 1
+    },
+    {
+      "id": 2,
+      "imgSrc": "https://via.placeholder.com/305x225",
+      "name": "Poached Pear Salad",
+      "description": "Poached pear and goat cheese salad made with mixed greens, poached pears an..",
+      "price": 3.0,
+      "size": "regular-Single",
+      "quantity": 1
+    },
+    {
+      "id": 3,
+      "imgSrc": "https://via.placeholder.com/305x225",
+      "name": "Poached Pear Salad",
+      "description": "Poached pear and goat cheese salad made with mixed greens, poached pears an..",
+      "price": 3.0,
+      "size": "regular-Single",
+      "quantity": 1
+    },
+    {
+      "id": 4,
+      "imgSrc": "https://via.placeholder.com/305x225",
+      "name": "Poached Pear Salad",
+      "description": "Poached pear and goat cheese salad made with mixed greens, poached pears an..",
+      "price": 3.0,
+      "size": "regular-Single",
+      "quantity": 1
+    },
+    {
+      "id": 5,
+      "imgSrc": "https://via.placeholder.com/305x225",
+      "name": "Poached Pear Salad",
+      "description": "Poached pear and goat cheese salad made with mixed greens, poached pears an..",
+      "price": 3.0,
+      "size": "regular-Single",
+      "quantity": 1
+    },
+    {
+      "id": 6,
+      "imgSrc": "https://via.placeholder.com/305x225",
+      "name": "Poached Pear Salad",
+      "description": "Poached pear and goat cheese salad made with mixed greens, poached pears an..",
+      "price": 3.0,
+      "size": "regular-Single",
+      "quantity": 1
+    },
+    {
+      "id": 7,
+      "imgSrc": "https://via.placeholder.com/305x225",
+      "name": "Poached Pear Salad",
+      "description": "Poached pear and goat cheese salad made with mixed greens, poached pears an..",
+      "price": 3.0,
+      "size": "regular-Single",
+      "quantity": 1
+    },
+    {
+      "id": 8,
+      "imgSrc": "https://via.placeholder.com/305x225",
+      "name": "Poached Pear Salad",
+      "description": "Poached pear and goat cheese salad made with mixed greens, poached pears an..",
+      "price": 3.0,
+      "size": "regular-Single",
+      "quantity": 1
+    }
+  ],
+  "cart": [
+    {
+      "name": "Cheese Burger",
+      "imgSrc": "https://www.figma.com/file/YRyQWsfHAyiFrbFr4Rn9qQ/image/097d2a877a82d671f17b68fa94862bce7d92a89c",
+      "size": "regular-Single",
+      "price": 5.0,
+      "quantity": 1
+    }
+  ],
+  "metadata": {
+    "total": 100,
+    "skip": 0,
+    "limit": 30
+  }
+}

@@ -1,0 +1,9 @@
+<section *ngIf="cartIsOpen" class="relative z-20">
+  <div class="fixed w-full h-full top-0 right-0 bg-black opacity-50" (click)="closeCart()"></div>
+  <div class="fixed top-0 right-0 bg-white md:pt-[72px] pb-[72px] md:w-[448px] w-full h-full">
+    <div class="mx-auto max-w-screen-xl p-8 h-full">
+      <app-cart-content *ngIf="currentSection === 'cart'" (close)="closeCart()"></app-cart-content>
+      <!-- <app-checkout *ngIf="currentSection === 'checkout'" (cart)="proceedToCart()"></app-checkout> -->
+    </div>
+  </div>
+</section>

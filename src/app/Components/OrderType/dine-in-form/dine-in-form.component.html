@@ -1,0 +1,125 @@
+<form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+  <div class="flex flex-col justify-center items-center">
+    <!-- Date and Time Selection Row -->
+    <div class="flex items-center flex-col md:flex-row w-full text-[24px] font-medium md:my-8 my-4 gap-2 md:gap-0">
+      <div class="flex items-center w-full">
+        <!-- Date Input -->
+        <div class="flex flex-col w-1/2 md:w-full">
+          <input type="date" id="date" formControlName="date"
+            class="w-full md:w-[222px] h-[64px] border-[1px] border-solid border-[#C7C7C7] px-4 rounded-l-[16px] placeholder:text-gray-500"
+            placeholder="Today">
+        </div>
+
+        <!-- Number of Persons Input -->
+        <div class="flex flex-col w-1/2 md:w-full relative">
+          <input type="number" id="persons" formControlName="persons" min="1" class="w-full md:w-[152px] h-[64px] border-[1px] border-solid border-[#C7C7C7] px-4
+            rounded-r-[16px] md:rounded-none placeholder:text-black" placeholder="1 person">
+        </div>
+      </div>
+
+      <div class="flex items-center w-full">
+        <!-- Branch Select -->
+        <div class="flex flex-col w-full select-wrapper">
+          <select id="branch" formControlName="branch"
+            class="w-full md:w-[152px] h-[64px] border-[1px] border-solid border-[#C7C7C7] px-4 rounded-l-[16px] md:rounded-none">
+            <option value="" disabled>Branch</option>
+            <option *ngFor="let branch of branches" [value]="branch.name">
+              {{ 'general.' + branch.name | translate }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Time Combo Box -->
+        <div class="flex flex-col w-full select-wrapper">
+          <select id="time" formControlName="time"
+            class="w-full md:w-[152px] h-[64px] border-[1px] border-solid border-[#C7C7C7] px-4 rounded-r-[16px]">
+            <option value="" disabled>Time</option>
+            <option *ngFor="let time of times" [value]="time">{{ time }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col md:flex-row gap-2 w-full md:-mt-6 md:mb-6 -mt-2 mb-2">
+      <div class="flex justify-between gap-2 flex-wrap">
+        <!-- Date Error -->
+        <div *ngIf="bookingForm.get('date')?.invalid && bookingForm.get('date')?.touched" class="text-[#F45859]">
+          <div *ngIf="bookingForm.get('date')?.hasError('required')">
+            Date is required.
+          </div>
+        </div>
+
+        <!-- Persons Error -->
+        <div *ngIf="bookingForm.get('persons')?.invalid && bookingForm.get('persons')?.touched" class="text-[#F45859]">
+          <div *ngIf="bookingForm.get('persons')?.hasError('required')">
+            Number of persons is required.
+          </div>
+          <div *ngIf="bookingForm.get('persons')?.hasError('min')">
+            Number of persons must be at least 1.
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-between gap-2 flex-wrap">
+        <!-- Branch Error -->
+        <div *ngIf="bookingForm.get('branch')?.invalid && bookingForm.get('branch')?.touched" class="text-[#F45859]">
+          <div *ngIf="bookingForm.get('branch')?.hasError('required')">
+            Branch is required.
+          </div>
+        </div>
+
+        <!-- Time Error -->
+        <div *ngIf="bookingForm.get('time')?.invalid && bookingForm.get('time')?.touched" class="text-[#F45859]">
+          <div *ngIf="bookingForm.get('time')?.hasError('required')">
+            Time is required.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Name, Phone Number, and Note Inputs -->
+    <div class="flex flex-col w-full justify-center items-center md:gap-4 gap-2 mt-4">
+      <!-- Name Input -->
+      <div class="flex flex-col md:w-auto w-full">
+        <input type="text" id="name" formControlName="name" placeholder="Your Name"
+          class="py-2 px-4 placeholder:text-[#616161] rounded-[16px] border-[1px] border-solid border-black w-full md:w-[588px] h-[56px]">
+        <div *ngIf="bookingForm.get('name')?.invalid && bookingForm.get('name')?.touched" class="text-[#F45859]">
+          <div *ngIf="bookingForm.get('name')?.hasError('required')">
+            Name is required.
+          </div>
+          <div *ngIf="bookingForm.get('name')?.hasError('pattern')">
+            Name must be alphabetic.
+          </div>
+        </div>
+      </div>
+
+      <!-- Phone Number Input -->
+      <div class="flex flex-col md:w-auto w-full">
+        <input type="tel" id="phone" formControlName="phone" placeholder="Phone Number"
+          class="py-2 px-4 placeholder:text-[#616161] rounded-[16px] border-[1px] border-solid border-black w-full md:w-[588px] h-[56px]">
+        <div *ngIf="bookingForm.get('phone')?.invalid && bookingForm.get('phone')?.touched" class="text-[#F45859]">
+          <div *ngIf="bookingForm.get('phone')?.hasError('required')">
+            Phone Number is required.
+          </div>
+          <div *ngIf="bookingForm.get('phone')?.hasError('pattern')">
+            Phone Number must be correct.
+          </div>
+        </div>
+      </div>
+
+      <!-- Note Input -->
+      <div class="flex flex-col justify-center items-center w-full">
+        <textarea id="note" formControlName="note" placeholder="Note"
+          class="py-2 px-4 placeholder:text-[#616161] rounded-[16px] border-[1px] border-solid border-black w-full md:w-[588px] h-[112px]"></textarea>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="my-6 w-full flex justify-center items-center">
+      <button type="submit"
+        class="bg-[#F45859] text-white w-5/6 md:w-[576px] h-[72px] flex justify-center items-center rounded-[16px] text-[32px] font-bold">
+        Book Now
+      </button>
+    </div>
+  </div>
+</form>

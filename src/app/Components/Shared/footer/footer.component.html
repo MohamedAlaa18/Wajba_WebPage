@@ -1,0 +1,157 @@
+<footer class="bg-[#F45859] text-white">
+  <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
+    <div class="lg:flex lg:items-start justify-between w-full">
+      <div class="flex flex-col justify-center gap-3">
+        <div class="text-teal-600">
+          <img src="assets/images/footer_logo.png" alt="logo" class="h-20">
+        </div>
+
+        <p class="text-xs">{{ 'general.subscribe_to_newsletter' | translate }}</p>
+
+        <div class="col-span-2 lg:col-span-3 lg:flex lg:items-end">
+          <form class="w-full">
+            <label for="UserEmail" class="sr-only"> Email </label>
+
+            <div
+              class="bg-white rounded-xl border border-gray-100 p-2 focus-within:ring sm:flex sm:items-center sm:gap-4">
+              <input type="email" id="UserEmail" placeholder="{{'general.your_email_address' | translate}}"
+                class="w-full border-none focus:border-transparent focus:ring-transparent sm:text-sm text-gray-900" />
+
+              <button
+                class="mt-1 w-full bg-[#F45859] hover:bg-[#D44E4F] transition rounded-xl px-4 py-2 text-sm font-bold tracking-wide text-white transition-none sm:mt-0 sm:w-auto sm:shrink-0">
+                {{'general.subscribe'|translate}}
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <p class="text-sm mt-2">{{ 'general.follow_us' | translate }}</p>
+
+        <ul class="col-span-2 flex justify-start gap-2 lg:col-span-5">
+          <li>
+            <a href="#" rel="noreferrer" target="_blank" class="transition hover:opacity-75">
+              <span class="sr-only">Facebook</span>
+
+              <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
+                <rect y="0.341324" width="16" height="16" fill="url(#pattern0_43_643)" />
+                <defs>
+                  <pattern id="pattern0_43_643" patternContentUnits="objectBoundingBox" width="1" height="1">
+                    <use xlink:href="#image0_43_643" transform="scale(0.0625)" />
+                  </pattern>
+                  <image id="image0_43_643" width="16" height="16"
+                    xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAGhSURBVDiNjZJNaxNhFIWfOzNOF4LQpQvTVdGBxEUR2k11lZ0ICoV+QLsoiELbTYt/QgQlifa/SASRojJCNwHrpotWSUSQgmGatpkcF86EYTKRHnjhct5zDvdeLuQgqSLplaSWpG7yWpJeSirn9VnjhKTXkmKNR19SXZJfZH73H2MezTTEkoA3wJORrk5OfvWevzjQ9+PrMht41WpnYmX5bvJdN7NNT1IFeFww0yDa3vlJFM0PqcPDdkbxVNKuB6wDzoi/0/lBFJUBbHIy9FeWzSmVpjISF1j3gGrRUuN2+zdwA8BfXXW9udmZAlnVAUpFAQwGGtaeO9JhgimT1AWupkx/b+/LWb1xp0jtP3r44crCwnyG+uMAR2PSR2DT09dy1JEHNIEgZdwgKPlrax/jg2/n8edP9wDc2bn37q2bvhcEt3MBTSQFRdd3EYb73cUldReXdBGG+wXHFEsqO2b2Fdi97BgZNMyslW53JxnlsngLPIPkgMzsFLgPNACN9yGgBjwws94wIAnpmdkGUAFq9PvHYBFY9K+mBpTNbCs1A/wFsNAjiP4ZQ1QAAAAASUVORK5CYII=" />
+                </defs>
+              </svg>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" rel="noreferrer" target="_blank" class="transition hover:opacity-75">
+              <span class="sr-only">Youtube</span>
+
+              <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
+                <rect y="0.341324" width="16" height="16" fill="url(#pattern0_44_644)" />
+                <defs>
+                  <pattern id="pattern0_44_644" patternContentUnits="objectBoundingBox" width="1" height="1">
+                    <use xlink:href="#image0_44_644" transform="scale(0.0625)" />
+                  </pattern>
+                  <image id="image0_44_644" width="16" height="16"
+                    xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAFXSURBVDiNlZPPShtRHIW/G/OvYEjwAXTXgq114SvoMk9Qd7p37RNkZalY2ifQF4grrT6BgqAbXdaNoCAYF0Ez+bq4k2QymkIOXBjmnvPNnB/3Qk7qkrqrXqnP6bpSf6hf8v5ssKL+UhMnq6f+VMvvhU//E8zrZAyi/p4iPNAeQFCXgAugMLHf+0qA5SKwmQ0nZ+e8Hrax84zdLgChWiXUZik1m8ysrAysM8BGEVjNYl/29+nf3UXHp48k1zc4qPp0wIcRAGCtAMxn3/QfH4fP1e1tKltbhHo9AjJ7qRYKMPxA/N0QJrd+u2URuAUWh55GA9MK3VaL5PpmlK838oC/ReA4Cyivf+O13cZOh/79A2FujlCtEGo1Ss1mHnAU0uN5QZzqNEqAr7FIPJ7Tanc0CS2rf6YIH6ul8XFGyJ7xwkxSz3hTx8M50Gf1u3qpdtJ1qe6oi3n/P5jdr1Ajbd2CAAAAAElFTkSuQmCC" />
+                </defs>
+              </svg>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" rel="noreferrer" target="_blank" class="transition hover:opacity-75">
+              <span class="sr-only">Instgram</span>
+
+              <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
+                <rect y="0.341324" width="16" height="16" fill="url(#pattern0_44_646)" />
+                <defs>
+                  <pattern id="pattern0_44_646" patternContentUnits="objectBoundingBox" width="1" height="1">
+                    <use xlink:href="#image0_44_646" transform="scale(0.0625)" />
+                  </pattern>
+                  <image id="image0_44_646" width="16" height="16"
+                    xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAIDSURBVDiNlZM/T5NRFMZ/996+JYGaMIhDSTTRra0J8AUU0EEndsukg4kQP4lGlOgXAFyZNFFDdfbP0o6UoYa6aEJKa/L2nnuPw9uiBRvjTe52nnOe5zzPgVNP0/Sqer+hITRUpKsiXQ2hod4/0TStnK7/DVSdUJHnKhJURMd8UZFNVc0PcWYIJoTXwGJsfyMeNNFOB0I8GWCmp7FXLmOLRYA9nLtljOlnDUReAPf97i7+/QdcpYI5VxhleNwlNBok16+RrKwAbJpcbj3TLBJCq6W9tXWNnc5f6cvHTyr1uvbW1jW0WpmcNC3nsPYeYON+E1cpYyYnAQifv+BrNTCQLC4Sv//AXpjBVcrE/Sa2WHRYe9cCNwC018UUCifg/ssdkuVlkqUl+ts72JnzuLk5zFQB/dnLdFl7M4cxFwGIEawFwNdq5O9UcfNzAOQBv7eHm58HZyGEoXWXLKBnPDVnPB7rfg7VrxhTwtqMBZnm/tYW+UHvdGubidVqBgkRnBsMMq0c8BYomakC8fAQALewcEIbYGK1mtEf7MrOzjKQ/QZN04qKyL9sVBGNnc6ojaqlYZA2gQf/FSTVpyZJHg6jnCeEV8BybLeJzQP06Gh0r6NRfodzt40x/o9Fa15Fng0OZvwxeb+hqsk4W9A0Lav3jzWEuoocq8ixhlBX7x+paul0/S/iPZxRMjN8+wAAAABJRU5ErkJggg==" />
+                </defs>
+              </svg>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" rel="noreferrer" target="_blank" class="transition hover:opacity-75">
+              <span class="sr-only">Twitter</span>
+
+              <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
+                <rect y="0.341324" width="16" height="16" fill="url(#pattern0_44_645)" />
+                <defs>
+                  <pattern id="pattern0_44_645" patternContentUnits="objectBoundingBox" width="1" height="1">
+                    <use xlink:href="#image0_44_645" transform="scale(0.0625)" />
+                  </pattern>
+                  <image id="image0_44_645" width="16" height="16"
+                    xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAGqSURBVDiNfZJPbxJRFMXPG4FiE/wImHQ5bde61SbYvS76kWqlRAWlu2oa/+x0TS2foF0U0E2TlkUXlMhCxskAnXk/F0CByeBJ7ua+e+67554rxQBsAm+AFvB3Ei3gNbARr58nrgDvgYjlCIEKkEki1/9DjONkoQlQBQgbDYK9PYL9EuH5+SLFWoZfvmJ9f5opz2uOpkWDahXreQSviljPu+MPP30mPDuLy1nXZGGzj266DD98JLq+ZlCpAHBbrzOq1ZKklAzwU5I7v5PwpC7zICf7uyc6Hel+VpmdnaTdtxxJ+Xg29fSJwtNTpR4/ku12lS4Ulpn3UEA/abbo8pJg9yW21xtLsTap7E+iBAYDjaoHclxXcoxMLif5vlJbW4kSjmNHodHhodIvniv9rCB71ZaTzyu6ast2OvEGNQEbE0vGdh0dETaaM1d8n6BYxPb7DN6WIbo71BBwHWNMS9KBJNl2W87amu5tzk7erK4qvb2t22/fpWxW0cXF9OmdMebXZGoywI+kLS3BMZCOSScDlOflJCBkfHiL5FijdaAENAFvEk1gH3Dj9f8ADgFekokS9TIAAAAASUVORK5CYII=" />
+                </defs>
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="flex lg:justify-between justify-evenly items-center flex-wrap lg:w-1/2 w-full">
+        <div class="col-span-2 sm:col-span-1 mt-12">
+          <p class="font-bold">{{ 'general.useful_links' | translate }}</p>
+
+          <ul class="mt-6 space-y-4 text-sm">
+            <li>
+              <a href="#" class="transition hover:opacity-75">{{ 'general.cookies_policy' | translate }}</a>
+            </li>
+
+            <li>
+              <a href="#" class="transition hover:opacity-75">{{ 'general.about_us' | translate }}</a>
+            </li>
+
+            <li>
+              <a href="#" class="transition hover:opacity-75">{{ 'general.contact_us' | translate }}</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-span-2 sm:col-span-1 mt-12">
+          <p class="font-bold">{{ 'general.download_our_app' | translate }}</p>
+
+          <ul class="mb-6 space-y-4 text-sm">
+            <li class="flex items-center gap-2 mb-12">
+              <img src="/assets/images/google_play.png" alt="logo" class="w-[128px]">
+              <img src="/assets/images/apple_store.png" alt="logo" class="w-[130.8px]">
+            </li>
+
+            <li class="flex items-center gap-3">
+              <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M4.81177 20C4.26177 20 3.79093 19.8042 3.39927 19.4125C3.0076 19.0208 2.81177 18.55 2.81177 18V6C2.81177 5.45 3.0076 4.97917 3.39927 4.5875C3.79093 4.19583 4.26177 4 4.81177 4H20.8118C21.3618 4 21.8326 4.19583 22.2243 4.5875C22.6159 4.97917 22.8118 5.45 22.8118 6V18C22.8118 18.55 22.6159 19.0208 22.2243 19.4125C21.8326 19.8042 21.3618 20 20.8118 20H4.81177ZM12.8118 13L4.81177 8V18H20.8118V8L12.8118 13ZM12.8118 11L20.8118 6H4.81177L12.8118 11ZM4.81177 8V6V18V8Z"
+                  fill="white" />
+              </svg>
+
+              <a href="#" class="transition hover:opacity-75"> Eat.happy&#64;info.com </a>
+            </li>
+
+            <li class="flex items-center gap-3">
+              <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M21.8118 16.42V19.956C21.8119 20.2092 21.716 20.453 21.5434 20.6382C21.3708 20.8234 21.1343 20.9363 20.8818 20.954C20.4448 20.984 20.0878 21 19.8118 21C10.9748 21 3.81177 13.837 3.81177 5C3.81177 4.724 3.82677 4.367 3.85777 3.93C3.87549 3.67744 3.98835 3.44101 4.17357 3.26841C4.35879 3.09581 4.60259 2.99989 4.85577 3H8.39177C8.51581 2.99987 8.63546 3.04586 8.7275 3.12902C8.81953 3.21218 8.87736 3.32658 8.88977 3.45C8.91277 3.68 8.93377 3.863 8.95377 4.002C9.1525 5.38892 9.55977 6.73783 10.1618 8.003C10.2568 8.203 10.1948 8.442 10.0148 8.57L7.85677 10.112C9.17622 13.1865 11.6263 15.6365 14.7008 16.956L16.2408 14.802C16.3037 14.714 16.3955 14.6509 16.5003 14.6237C16.605 14.5964 16.7159 14.6068 16.8138 14.653C18.0788 15.2539 19.4273 15.6601 20.8138 15.858C20.9528 15.878 21.1358 15.9 21.3638 15.922C21.487 15.9346 21.6012 15.9926 21.6841 16.0846C21.7671 16.1766 21.8129 16.2961 21.8128 16.42H21.8118Z"
+                  fill="white" />
+              </svg>
+
+              <a href="#" class="transition hover:opacity-75"> 883-473-3532 </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

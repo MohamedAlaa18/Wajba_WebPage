@@ -1,0 +1,35 @@
+<div *ngIf="isModalOpen" id="default-modal" tabindex="-1" aria-hidden="true"
+  class="fixed top-0 right-0 left-0 z-50 w-full h-full bg-opacity-50 bg-black flex justify-center items-center"
+  (click)="closeModal()">
+  <div class="max-w-screen-xl px-4 sm:px-6 lg:px-8 xl:px-1">
+    <div class="relative p-4 w-full max-w-[521px] min-w-[300px] bg-white rounded-2xl"
+      (click)="$event.stopPropagation()">
+      <!-- Modal content -->
+      <div class="relative p-4">
+        <!-- Modal header -->
+        <div class="flex items-center justify-between border-b rounded-t">
+          <h3 class="font-medium text-gray-90">{{productItem.name}}</h3>
+          <button type="button" (click)="closeModal()"
+            class="text-gray-400 bg-transparent rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center">
+            <svg class="hover-fill" width="21" height="20" viewBox="0 0 21 20" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M6.89158 15L10.4916 11.4L14.0916 15L15.4916 13.6L11.8916 10L15.4916 6.4L14.0916 5L10.4916 8.6L6.89158 5L5.49158 6.4L9.09158 10L5.49158 13.6L6.89158 15ZM10.4916 20C9.10824 20 7.80824 19.7375 6.59158 19.2125C5.37491 18.6875 4.31658 17.975 3.41658 17.075C2.51658 16.175 1.80408 15.1167 1.27908 13.9C0.754077 12.6833 0.491577 11.3833 0.491577 10C0.491577 8.61667 0.754077 7.31667 1.27908 6.1C1.80408 4.88333 2.51658 3.825 3.41658 2.925C4.31658 2.025 5.37491 1.3125 6.59158 0.7875C7.80824 0.2625 9.10824 0 10.4916 0C11.8749 0 13.1749 0.2625 14.3916 0.7875C15.6082 1.3125 16.6666 2.025 17.5666 2.925C18.4666 3.825 19.1791 4.88333 19.7041 6.1C20.2291 7.31667 20.4916 8.61667 20.4916 10C20.4916 11.3833 20.2291 12.6833 19.7041 13.9C19.1791 15.1167 18.4666 16.175 17.5666 17.075C16.6666 17.975 15.6082 18.6875 14.3916 19.2125C13.1749 19.7375 11.8749 20 10.4916 20ZM10.4916 18C12.7249 18 14.6166 17.225 16.1666 15.675C17.7166 14.125 18.4916 12.2333 18.4916 10C18.4916 7.76667 17.7166 5.875 16.1666 4.325C14.6166 2.775 12.7249 2 10.4916 2C8.25824 2 6.36658 2.775 4.81658 4.325C3.26658 5.875 2.49158 7.76667 2.49158 10C2.49158 12.2333 3.26658 14.125 4.81658 15.675C6.36658 17.225 8.25824 18 10.4916 18Z"
+                fill="#F45859" />
+            </svg>
+            <span class="sr-only">Close modal</span>
+          </button>
+        </div>
+
+        <hr class="border-gray-500 border-solid border-t-[1px] mt-2 mb-6">
+
+        <!-- Modal body -->
+        <div class="space-y-4">
+          <p class="text-base text-gray-600 leading-5">
+            {{productItem.description}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

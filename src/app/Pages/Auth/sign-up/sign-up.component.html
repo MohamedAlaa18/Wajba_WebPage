@@ -1,0 +1,178 @@
+<div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 mt-12 min-h-[100dvh] flex justify-center items-center">
+  <div class="mx-auto max-w-lg flex justify-center items-center">
+    <form (ngSubmit)="onSubmit()" [formGroup]="signUpForm"
+      class="mb-0 mt-6 space-y-4 rounded-2xl shadow-[0_4px_16px_0px_#CCCCCC66] p-4 sm:p-6 lg:p-8 sm:min-w-[625px] min-w-full">
+
+      <p class="text-center text-2xl font-bold">{{ 'general.create_account' | translate }}</p>
+
+      <div class="flex justify-center items-center gap-6 flex-col sm:flex-row">
+        <div class="sm:w-1/2 w-full">
+          <label for="firstName" class="font-medium">{{ 'general.first_name' | translate }}</label>
+          <div class="relative">
+            <input type="text" id="firstName" formControlName="firstName"
+              class="w-full rounded-md border-solid border-[1px] border-[#E3E3E3] p-4 mt-2 text-sm shadow-sm focus:outline-[#F45859]"
+              placeholder="{{ 'general.enter_first_name' | translate }}" />
+          </div>
+          @if(signUpForm.controls['firstName'].invalid && signUpForm.controls['firstName'].touched){
+          <div class="text-red-500 text-xs mt-1">
+            {{ 'general.first_name_error' | translate }}
+          </div>
+          }
+        </div>
+
+        <div class="sm:w-1/2 w-full">
+          <label for="lastName" class="font-medium">{{ 'general.last_name' | translate }}</label>
+          <div class="relative">
+            <input type="text" id="lastName" formControlName="lastName"
+              class="w-full rounded-md border-solid border-[1px] border-[#E3E3E3] p-4 mt-2 text-sm shadow-sm focus:outline-[#F45859]"
+              placeholder="{{ 'general.enter_last_name' | translate }}" />
+          </div>
+          @if(signUpForm.controls['lastName'].invalid && signUpForm.controls['lastName'].touched){
+          <div class="text-red-500 text-xs mt-1">
+            {{ 'general.last_name_error' | translate }}
+          </div>
+          }
+        </div>
+      </div>
+
+      <div class="flex justify-center items-center gap-6 flex-col sm:flex-row">
+        <div class="sm:w-1/2 w-full">
+          <label for="email" class="font-medium">{{ 'general.email' | translate }}</label>
+          <div class="relative">
+            <input type="email" id="email" formControlName="email"
+              class="w-full rounded-md border-solid border-[1px] border-[#E3E3E3] p-4 mt-2 text-sm shadow-sm focus:outline-[#F45859]"
+              placeholder="{{ 'general.enter_email' | translate }}" />
+          </div>
+          @if (signUpForm.controls['email'].invalid && signUpForm.controls['email'].touched) {
+          <div class="text-red-500 text-xs mt-1">
+            {{ 'general.email_error' | translate }}
+          </div>
+          }
+        </div>
+
+        <div class="sm:w-1/2 w-full">
+          <label for="phone" class="font-medium">{{ 'general.phone_number' | translate }}</label>
+          <div class="relative flex gap-3">
+            <div class="relative">
+              <button type="button"
+                class="flex gap-2 items-center justify-center rounded-md border-solid border-[1px] border-[#E3E3E3] h-[53.6px] p-4 mt-2 text-gray-900 transition"
+                (click)="toggleCountryCodeDropdown()">
+                <span class="sr-only">Select Country Code</span>
+                <img [src]="selectedCountryLogo" alt="Country logo" class="w-4 h-4">
+                {{ selectedCountryDialCode }}
+              </button>
+              <div class="absolute left-0 z-10 mt-2 w-fit rounded-xl border border-gray-100 bg-white shadow-lg"
+                [class.hidden]="!isCountryCodeDropdownOpen">
+                <div class="p-2">
+                  @for(country of countries; track $index){
+                  <div (click)="selectCountryCode(country)"
+                    class="flex gap-2 items-center rounded-lg p-2 text-base text-gray-900 hover:bg-gray-50 hover:text-gray-700 cursor-pointer">
+                    <img [src]="country.logo" alt="Country logo" class="w-4 h-4">
+                    {{ country.dial_code }}
+                  </div>
+                  }
+                </div>
+              </div>
+            </div>
+            <input type="text" id="phone" formControlName="phone"
+              class="w-full rounded-md border-solid border-[1px] border-[#E3E3E3] p-4 mt-2 text-sm shadow-sm focus:outline-[#F45859]"
+              placeholder="{{ 'general.enter_phone_number' | translate }}" />
+          </div>
+          @if(signUpForm.controls['phone'].invalid && signUpForm.controls['phone'].touched){
+          <div class="text-red-500 text-xs mt-1">
+            {{ 'general.phone_number_error' | translate }}
+          </div>
+          }
+        </div>
+      </div>
+
+      <!-- <div class="flex justify-center items-center gap-6 flex-col sm:flex-row">
+        <div class="sm:w-1/2 w-full">
+          <label for="password" class="font-medium">{{ 'general.password' | translate }}</label>
+          <div class="relative">
+            <input type="{{ showPassword ? 'text' : 'password' }}" id="password" formControlName="password"
+              class="w-full rounded-md border-solid border-[1px] border-[#E3E3E3] p-4 mt-2 text-sm shadow-sm focus:outline-[#F45859]"
+              placeholder="{{ 'general.enter_password' | translate }}" />
+            <button type="button" (click)="togglePasswordVisibility('password')" [class.left-0]="isArabic()"
+              [class.right-0]="!isArabic()" class="absolute inset-y-9 grid place-content-center px-4">
+              @if(showPassword){
+              <img src="assets/images/open-eye.svg" alt="open-eye">
+              }
+              @if (!showPassword) {
+              <img src="assets/images/close-eye.svg" alt="close-eye">
+              }
+              <ng-template #showPasswordTemplate>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0_125_1142)">
+                    <path
+                      d="M17.94 17.94C16.2306 19.243 14.1491 19.9649 12 20C5 20 1 12 1 12C2.24389 9.6819 3.96914 7.65661 6.06 6.06M9.9 4.24C10.5883 4.07888 11.2931 3.99834 12 4C19 4 23 12 23 12C22.393 13.1356 21.6691 14.2047 20.84 15.19M14.12 14.12C13.8454 14.4147 13.5141 14.6512 13.1462 14.8151C12.7782 14.9791 12.3809 15.0673 11.9781 15.0744C11.5753 15.0815 11.1752 15.0074 10.8016 14.8565C10.4281 14.7056 10.0887 14.481 9.80385 14.1962C9.51897 13.9113 9.29439 13.5719 9.14351 13.1984C8.99262 12.8248 8.91853 12.4247 8.92563 12.0219C8.93274 11.6191 9.02091 11.2218 9.18488 10.8538C9.34884 10.4859 9.58525 10.1546 9.88 9.88M1 1L23 23"
+                      stroke="#81818180" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_125_1142">
+                      <rect width="24" height="24" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+              </ng-template>
+            </button>
+          </div>
+          @if(signUpForm.controls['password'].invalid && signUpForm.controls['password'].touched){
+          <div class="text-red-500 text-xs mt-1">
+            {{ 'general.password_error' | translate }}
+          </div>
+          }
+        </div>
+
+        <div class="sm:w-1/2 w-full">
+          <label for="confirmPassword" class="font-medium">{{ 'general.confirm_password' | translate }}</label>
+          <div class="relative">
+            <input type="{{ showConfirmPassword ? 'text' : 'password' }}" id="confirmPassword"
+              formControlName="confirmPassword"
+              class="w-full rounded-md border-solid border-[1px] border-[#E3E3E3] p-4 mt-2 text-sm shadow-sm focus:outline-[#F45859]"
+              placeholder="{{ 'general.confirm_password' | translate }}" />
+            <button type="button" (click)="togglePasswordVisibility('confirmPassword')" [class.left-0]="isArabic()"
+              [class.right-0]="!isArabic()" class="absolute inset-y-9 grid place-content-center px-4">
+              @if(showConfirmPassword){
+              <img src="assets/images/open-eye.svg" alt="open-eye">
+              }
+              @if (!showConfirmPassword) {
+              <img src="assets/images/close-eye.svg" alt="close-eye">
+              }
+              <ng-template #showPasswordTemplate>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0_125_1142)">
+                    <path
+                      d="M17.94 17.94C16.2306 19.243 14.1491 19.9649 12 20C5 20 1 12 1 12C2.24389 9.6819 3.96914 7.65661 6.06 6.06M9.9 4.24C10.5883 4.07888 11.2931 3.99834 12 4C19 4 23 12 23 12C22.393 13.1356 21.6691 14.2047 20.84 15.19M14.12 14.12C13.8454 14.4147 13.5141 14.6512 13.1462 14.8151C12.7782 14.9791 12.3809 15.0673 11.9781 15.0744C11.5753 15.0815 11.1752 15.0074 10.8016 14.8565C10.4281 14.7056 10.0887 14.481 9.80385 14.1962C9.51897 13.9113 9.29439 13.5719 9.14351 13.1984C8.99262 12.8248 8.91853 12.4247 8.92563 12.0219C8.93274 11.6191 9.02091 11.2218 9.18488 10.8538C9.34884 10.4859 9.58525 10.1546 9.88 9.88M1 1L23 23"
+                      stroke="#81818180" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_125_1142">
+                      <rect width="24" height="24" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+              </ng-template>
+            </button>
+          </div>
+          @if(signUpForm.controls['confirmPassword'].invalid && signUpForm.controls['confirmPassword'].touched){
+          <small class="text-red-500 text-xs mt-1">
+            {{ 'general.confirm_password_error' | translate }}
+          </small>
+          }
+          @if(signUpForm.errors?.['mismatch']){
+          <small class="text-red-500 text-xs mt-1">
+            Passwords do not match
+          </small>
+          }
+
+        </div>
+      </div> -->
+
+      <button type="submit"
+        class="block w-5/6 rounded-full bg-[#F45859] hover:bg-[#D44E4F] transition px-5 py-2 mx-auto text-xl font-bold text-white mt-4">
+        {{ 'general.continue' | translate }}
+      </button>
+    </form>
+  </div>
+</div>

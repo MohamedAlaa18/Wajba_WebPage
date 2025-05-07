@@ -1,0 +1,51 @@
+<section [ngClass]="{'min-h-[90dvh] mt-32 w-fit mx-auto': isOffersRoute()}">
+  <p *ngIf="isOffersRoute()" class="text-[#F45859] text-[32px] font-bold">All Offers</p>
+
+  <div class="py-6 flex lg:flex-row flex-col items-center justify-center gap-6">
+    <div
+      class="bg-[url('/assets/images/6f855f1a29b90df34aac110c863346ae.jpeg')] bg-cover bg-center rounded-3xl w-full h-[290px] sm:w-[622px] sm:h-[163px] flex flex-col sm:flex-row justify-evenly items-center relative overflow-hidden">
+      <div class="text-center mr-auto ml-16">
+        <h2 class="font-bold text-[#F45859] text-xl">{{ 'general.uplifting_anytime' | translate }}</h2>
+        <p class="font-medium text-[#760D0D] my-2">{{ 'general.flat_7%_off_on_Beef_items' | translate }}</p> <button
+          class="rounded-full border-[1px] border-gray-900 border-solid text-[#760D0D] font-medium px-4 py-1">{{
+          'general.order_now' | translate }}</button>
+      </div>
+      <!-- <div>
+        <svg width="201" height="82" viewBox="0 0 201 82" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M19.3535 57.6157C15.0174 49.5329 42.2112 17.2941 107.625 0.112366L117.846 17.4327L149.438 7.73331L137.358 27.8249L168.021 11.8902V23.668L181.029 11.8902C192.799 11.8902 164.304 36.4157 199.984 23.668C205.512 21.693 156.561 49.302 137.358 57.6157L81.6081 81.1714L63.9538 72.8576H32.362H0.770142L19.3535 57.6157Z"
+            fill="#6FFFA9" />
+        </svg>
+        <img src="/assets/images/meat.png" alt="Bangla"
+          class="w-[165.99px] h-[99.1px] rotate-[32.27deg] absolute sm:top-8 sm:right-20 top-40 right-30">
+      </div>
+      <img src="/assets/images/leaf.png" alt="Bangla" class="w-[51.09px] rotate-45 absolute -bottom-1 left-8">
+      <img src="/assets/images/flower.png" alt="Bangla" class="w-[43.14px] -rotate-[149.45deg] absolute -top-4 right-8"> -->
+    </div>
+
+    <div
+      class="bg-[url('/assets/images/6a574a7c25e0d6a6f9b99687d6cc2923.jpeg')] bg-cover bg-center rounded-3xl w-full h-[290px] sm:w-[622px] sm:h-[163px] flex flex-col sm:flex-row justify-evenly items-center relative overflow-hidden">
+      <div class="text-center mr-auto ml-16">
+        <h2 class="font-bold text-[#F45859] text-xl">{{ 'general.savory_and_satisfying' | translate }}</h2>
+        <p class="font-medium text-[#760D0D] my-2">{{ 'general.flat_5%_on_veg' | translate }} & {{
+          'general.non-veg_burgers' | translate
+          }}</p> <button
+          class="rounded-full border-[1px] border-gray-900 border-solid text-[#760D0D] font-medium px-4 py-1">{{
+          'general.order_now' | translate }}</button>
+      </div>
+      <!-- <div>
+        <svg width="150" height="129" viewBox="0 0 150 129" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M149.221 84.4966C149.221 117.77 136.881 128.62 75.5374 128.62C75.5374 68.3734 0.562042 101.647 0.562042 68.3733C0.562042 35.1001 45.8948 8.78347 86.7904 1.40635C149.221 -4.84866 149.221 51.2233 149.221 84.4966Z"
+            fill="#FFEBB2" />
+        </svg>
+        <div class="absolute sm:top-4 sm:right-12 top-36 right-30 flex items-center justify-center">
+          <img src="/assets/images/burger.png" alt="Bangla" class="w-[120.55px] ">
+          <img src="/assets/images/cup_cola.png" alt="Bangla" class="w-[74.6px] -ml-5">
+        </div>
+      </div>
+      <img src="/assets/images/leaf_3.png" alt="Bangla" class="w-[46.78px] rotate-[50.45deg] absolute -bottom-2 left-4">
+      <img src="/assets/images/leaf_2.png" alt="Bangla" class="w-[47.67px] rotate-[47.13deg] absolute -top-4 right-4"> -->
+    </div>
+  </div>
+</section>

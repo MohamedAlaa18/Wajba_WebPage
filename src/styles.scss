@@ -1,0 +1,91 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+html {
+  letter-spacing: 0.1px;
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+  // direction: rtl;
+  // overflow-x: hidden;
+
+  --color: #999;
+  --checked-color: #F45859;
+
+  --bg-color: #e8e8e8;
+}
+
+*,
+*:after,
+*:before {
+  box-sizing: inherit;
+}
+
+* {
+  border: 0;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+}
+
+
+.custom-radio {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+  border: 1px solid #F45859;
+  border-radius: 50%;
+  transform: translateY(-0.075em);
+  display: grid;
+  place-content: center;
+}
+
+.custom-radio::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em #F45859;
+  background-color: CanvasText;
+}
+
+.custom-radio:checked::before {
+  transform: scale(0.7);
+  background-color: #F45859;
+}
+
+
+.custom-check-box {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+  border: 1px solid #F45859;
+  border-radius: 1px;
+  transform: translateY(-0.075em);
+  display: grid;
+  place-content: center;
+}
+
+.custom-check-box::before {
+  content: "\2713";
+  width: 0.65em;
+  height: 0.65em;
+  border-radius: 1px;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em #F45859;
+  color: white;
+  background-color: CanvasText;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-check-box:checked::before {
+  transform: scale(1);
+  background-color: #F45859;
+}
