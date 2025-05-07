@@ -49,7 +49,7 @@ export class CheckoutContentComponent implements OnInit {
           notes: 'No onions, please.'
         },
         {
-          itemName: 'coffee',
+          itemName: 'Coffee',
           itemId: 2,
           cartItemId: 102,
           imgUrl: 'assets/images/coffee.jpeg',
